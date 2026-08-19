@@ -1,0 +1,158 @@
+{
+ "actions": [],
+ "creation": "2026-08-13 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "default_view",
+  "column_break_general",
+  "enable_notifications",
+  "enable_realtime",
+  "section_q1",
+  "q1_label",
+  "q1_color",
+  "column_break_q2",
+  "q2_label",
+  "q2_color",
+  "section_q3",
+  "q3_label",
+  "q3_color",
+  "column_break_q4",
+  "q4_label",
+  "q4_color"
+ ],
+ "fields": [
+  {
+   "default": "Cuadrante",
+   "fieldname": "default_view",
+   "fieldtype": "Select",
+   "label": "Vista predeterminada",
+   "options": "Cuadrante\nKanban\nLista\nTarjetas"
+  },
+  {
+   "fieldname": "column_break_general",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_notifications",
+   "fieldtype": "Check",
+   "label": "Habilitar notificaciones"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_realtime",
+   "fieldtype": "Check",
+   "label": "Habilitar actualización en vivo"
+  },
+  {
+   "fieldname": "section_q1",
+   "fieldtype": "Section Break",
+   "label": "Cuadrante 1 — Urgente + Importante"
+  },
+  {
+   "default": "Hazlo Ya",
+   "fieldname": "q1_label",
+   "fieldtype": "Data",
+   "label": "Etiqueta"
+  },
+  {
+   "default": "#e03131",
+   "fieldname": "q1_color",
+   "fieldtype": "Color",
+   "label": "Color"
+  },
+  {
+   "fieldname": "column_break_q2",
+   "fieldtype": "Column Break",
+   "label": "Cuadrante 2 — Importante, no urgente"
+  },
+  {
+   "default": "Planifícalo",
+   "fieldname": "q2_label",
+   "fieldtype": "Data",
+   "label": "Etiqueta"
+  },
+  {
+   "default": "#2f9e44",
+   "fieldname": "q2_color",
+   "fieldtype": "Color",
+   "label": "Color"
+  },
+  {
+   "fieldname": "section_q3",
+   "fieldtype": "Section Break",
+   "label": "Cuadrante 3 — Urgente, no importante"
+  },
+  {
+   "default": "Delégalo",
+   "fieldname": "q3_label",
+   "fieldtype": "Data",
+   "label": "Etiqueta"
+  },
+  {
+   "default": "#f08c00",
+   "fieldname": "q3_color",
+   "fieldtype": "Color",
+   "label": "Color"
+  },
+  {
+   "fieldname": "column_break_q4",
+   "fieldtype": "Column Break",
+   "label": "Cuadrante 4 — Ninguna"
+  },
+  {
+   "default": "Elimínalo",
+   "fieldname": "q4_label",
+   "fieldtype": "Data",
+   "label": "Etiqueta"
+  },
+  {
+   "default": "#868e96",
+   "fieldname": "q4_color",
+   "fieldtype": "Color",
+   "label": "Color"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-08-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Eisenhower Matrix",
+ "name": "EU Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Eisenhower Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Eisenhower User"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

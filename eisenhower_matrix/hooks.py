@@ -51,7 +51,7 @@ app_license = "mit"
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "eisenhower_matrix/public/icons.svg"
+app_include_icons = "eisenhower_matrix/public/icons.svg"
 
 # Home Pages
 # ----------
@@ -82,8 +82,8 @@ app_license = "mit"
 # Installation
 # ------------
 
-# before_install = "eisenhower_matrix.install.before_install"
-# after_install = "eisenhower_matrix.install.after_install"
+after_install = "eisenhower_matrix.install.after_install"
+after_migrate = "eisenhower_matrix.install.after_install"
 
 # Uninstallation
 # ------------
@@ -137,34 +137,24 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"EU Activity": {
+		# on_update also fires for brand-new documents (right after after_insert, in the
+		# same save), so wiring after_insert here too would enqueue two push jobs per
+		# creation and race each other into inserting duplicate Google events.
+		"on_update": "eisenhower_matrix.google_sync.on_activity_change",
+		"on_trash": "eisenhower_matrix.google_sync.on_activity_trash",
+	},
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"eisenhower_matrix.tasks.all"
-# 	],
-# 	"daily": [
-# 		"eisenhower_matrix.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"eisenhower_matrix.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"eisenhower_matrix.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"eisenhower_matrix.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"hourly": [
+		"eisenhower_matrix.google_sync.sync_all",
+	],
+}
 
 # Testing
 # -------

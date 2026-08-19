@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "creation": "2026-08-13 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "invite_role",
+  "external_email",
+  "transfer_ownership",
+  "column_break_1",
+  "status",
+  "responded_on",
+  "section_clasificacion_personal",
+  "override_classification",
+  "personal_important",
+  "personal_urgent",
+  "response_comment"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Usuario",
+   "mandatory_depends_on": "eval:doc.invite_role != 'Externo'",
+   "options": "User"
+  },
+  {
+   "default": "Colaborador",
+   "fieldname": "invite_role",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Rol de invitación",
+   "options": "Colaborador\nExterno"
+  },
+  {
+   "depends_on": "eval:doc.invite_role == 'Externo'",
+   "description": "Se invita por correo al sincronizar la actividad con Google Calendar.",
+   "fieldname": "external_email",
+   "fieldtype": "Data",
+   "label": "Correo del externo",
+   "mandatory_depends_on": "eval:doc.invite_role == 'Externo'",
+   "options": "Email"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.invite_role == 'Delegado'",
+   "fieldname": "transfer_ownership",
+   "fieldtype": "Check",
+   "label": "Transferir responsabilidad al aceptar"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pendiente",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Estado",
+   "options": "Pendiente\nAceptada\nRechazada",
+   "read_only": 1
+  },
+  {
+   "fieldname": "responded_on",
+   "fieldtype": "Datetime",
+   "label": "Respondida el",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_clasificacion_personal",
+   "fieldtype": "Section Break",
+   "label": "Clasificación personal (opcional)"
+  },
+  {
+   "default": "0",
+   "fieldname": "override_classification",
+   "fieldtype": "Check",
+   "label": "Usar mi propia clasificación en vez de la del dueño"
+  },
+  {
+   "depends_on": "eval:doc.override_classification",
+   "fieldname": "personal_important",
+   "fieldtype": "Check",
+   "label": "Importante para mí"
+  },
+  {
+   "depends_on": "eval:doc.override_classification",
+   "fieldname": "personal_urgent",
+   "fieldtype": "Check",
+   "label": "Urgente para mí"
+  },
+  {
+   "fieldname": "response_comment",
+   "fieldtype": "Small Text",
+   "label": "Comentario de respuesta"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Eisenhower Matrix",
+ "name": "EU Activity Participant",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,225 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "format:EA-{#####}",
+ "creation": "2026-08-13 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "description",
+  "section_clasificacion",
+  "is_important",
+  "column_break_clasificacion",
+  "is_urgent",
+  "quadrant",
+  "section_seguimiento",
+  "status",
+  "task_type",
+  "column_break_seguimiento",
+  "due_date",
+  "start_time",
+  "end_time",
+  "sync_to_google",
+  "responsible_user",
+  "section_colaboracion",
+  "is_shared",
+  "board_order",
+  "participants",
+  "google_calendar",
+  "google_event_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Título",
+   "reqd": 1
+  },
+  {
+   "default": "Laboral",
+   "fieldname": "task_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Tipo de Tarea",
+   "options": "Personal\nLaboral"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Descripción"
+  },
+  {
+   "fieldname": "section_clasificacion",
+   "fieldtype": "Section Break",
+   "label": "Clasificación (Matriz de Eisenhower)"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_important",
+   "fieldtype": "Check",
+   "label": "Importante"
+  },
+  {
+   "fieldname": "column_break_clasificacion",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_urgent",
+   "fieldtype": "Check",
+   "label": "Urgente"
+  },
+  {
+   "fieldname": "quadrant",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Cuadrante",
+   "options": "Hazlo Ya\nPlanifícalo\nDelégalo\nElimínalo",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_seguimiento",
+   "fieldtype": "Section Break",
+   "label": "Seguimiento"
+  },
+  {
+   "default": "Abierta",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Estado",
+   "options": "Abierta\nEn Progreso\nCompletada\nCancelada"
+  },
+  {
+   "fieldname": "column_break_seguimiento",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Fecha límite"
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "Hora de inicio"
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "Hora de fin"
+  },
+  {
+   "default": "1",
+   "description": "Solo aplica si el responsable tiene un Calendario de Google vinculado y activo en Configuraciones EMatrix.",
+   "fieldname": "sync_to_google",
+   "fieldtype": "Check",
+   "label": "Sincronizar con Google Calendar"
+  },
+  {
+   "fieldname": "responsible_user",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Responsable",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_colaboracion",
+   "fieldtype": "Section Break",
+   "label": "Colaboración"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_shared",
+   "fieldtype": "Check",
+   "label": "Compartida",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "board_order",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Orden en tablero"
+  },
+  {
+   "fieldname": "participants",
+   "fieldtype": "Table",
+   "label": "Participantes",
+   "options": "EU Activity Participant"
+  },
+  {
+   "fieldname": "google_calendar",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Calendario de Google sincronizado",
+   "options": "Google Calendar",
+   "read_only": 1
+  },
+  {
+   "fieldname": "google_event_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "ID de evento en Google Calendar",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-08-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Eisenhower Matrix",
+ "name": "EU Activity",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "if_owner": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Eisenhower User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Eisenhower Manager"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title",
+ "track_changes": 1
+}
