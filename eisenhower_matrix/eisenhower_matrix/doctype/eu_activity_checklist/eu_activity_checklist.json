@@ -1,0 +1,38 @@
+{
+ "actions": [],
+ "creation": "2026-10-22 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "done"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Subtarea",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "done",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Hecha"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-22 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Eisenhower Matrix",
+ "name": "EU Activity Checklist",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

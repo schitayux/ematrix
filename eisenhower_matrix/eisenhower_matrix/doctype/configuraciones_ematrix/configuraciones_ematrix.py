@@ -8,6 +8,15 @@ from frappe.model.document import Document
 
 class ConfiguracionesEMatrix(Document):
 	def validate(self):
+		# google_calendar stopped being mandatory once this doctype also started
+		# hosting report-sharing settings (report_shared_with) — a user who only
+		# wants to share their stats shouldn't be forced to link a calendar. But
+		# sync_enabled with no calendar would reach google_sync.py's
+		# get_google_calendar_object(None) and blow up the scheduled sync job, so
+		# that specific combination is still blocked here instead.
+		if self.sync_enabled and not self.google_calendar:
+			frappe.throw(_("Debes vincular un Calendario de Google antes de activar la sincronización"))
+
 		calendar_user = frappe.db.get_value("Google Calendar", self.google_calendar, "user")
 		if calendar_user and calendar_user != self.user:
 			frappe.throw(

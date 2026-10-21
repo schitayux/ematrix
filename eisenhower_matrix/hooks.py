@@ -117,13 +117,25 @@ after_migrate = "eisenhower_matrix.install.after_install"
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
-#
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+# Privacidad: nadie (ni System Manager) ve actividades ajenas salvo por las reglas de
+# la app (dueño, responsable, participante). Ver eisenhower_matrix/permissions.py.
+permission_query_conditions = {
+	"EU Activity": "eisenhower_matrix.permissions.activity_query_conditions",
+	"EU Activity Event": "eisenhower_matrix.permissions.event_query_conditions",
+	"EU Activity Template": "eisenhower_matrix.permissions.template_query_conditions",
+	"Comment": "eisenhower_matrix.permissions.comment_query_conditions",
+	"Version": "eisenhower_matrix.permissions.version_query_conditions",
+	"ToDo": "eisenhower_matrix.permissions.todo_query_conditions",
+}
+
+has_permission = {
+	"EU Activity": "eisenhower_matrix.permissions.activity_has_permission",
+	"EU Activity Event": "eisenhower_matrix.permissions.event_has_permission",
+	"EU Activity Template": "eisenhower_matrix.permissions.template_has_permission",
+	"Comment": "eisenhower_matrix.permissions.comment_has_permission",
+	"Version": "eisenhower_matrix.permissions.version_has_permission",
+	"ToDo": "eisenhower_matrix.permissions.todo_has_permission",
+}
 
 # DocType Class
 # ---------------
@@ -143,7 +155,13 @@ doc_events = {
 		# same save), so wiring after_insert here too would enqueue two push jobs per
 		# creation and race each other into inserting duplicate Google events.
 		"on_update": "eisenhower_matrix.google_sync.on_activity_change",
-		"on_trash": "eisenhower_matrix.google_sync.on_activity_trash",
+		"on_trash": [
+			"eisenhower_matrix.google_sync.on_activity_trash",
+			# Strips back-links (EU Activity Event rows, follow_up_of children) before
+			# Frappe's link check runs, so recurring-series and completed activities can
+			# actually be deleted.
+			"eisenhower_matrix.recurrence.on_activity_trash",
+		],
 	},
 }
 
@@ -154,6 +172,12 @@ scheduler_events = {
 	"hourly": [
 		"eisenhower_matrix.google_sync.sync_all",
 	],
+	"cron": {
+		# Resumen matutino de Mi día (hora del sistema configurada en System Settings).
+		"0 7 * * *": [
+			"eisenhower_matrix.api.extras.send_daily_digest",
+		],
+	},
 }
 
 # Testing

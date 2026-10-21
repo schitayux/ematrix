@@ -12,7 +12,9 @@
   "section_break_status",
   "last_synced_on",
   "last_sync_error",
-  "next_sync_token"
+  "next_sync_token",
+  "section_break_reports",
+  "report_shared_with"
  ],
  "fields": [
   {
@@ -31,8 +33,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Calendario de Google",
-   "options": "Google Calendar",
-   "reqd": 1
+   "options": "Google Calendar"
   },
   {
    "default": "0",
@@ -64,6 +65,18 @@
    "fieldtype": "Password",
    "hidden": 1,
    "label": "Token de sincronización incremental"
+  },
+  {
+   "fieldname": "section_break_reports",
+   "fieldtype": "Section Break",
+   "label": "Compartir informes y calendario"
+  },
+  {
+   "description": "Estos usuarios podrán: (1) elegir tu nombre en el filtro \"Ver informe de\" de la pestaña Reportes para ver tus estadísticas, y (2) elegir tu nombre en el filtro \"Ver actividades de\" de la vista Calendario para ver tu agenda en solo lectura. No les da acceso a tus actividades en las demás vistas ni a editarlas.",
+   "fieldname": "report_shared_with",
+   "fieldtype": "Table",
+   "label": "Compartir mis informes y calendario con",
+   "options": "EU Report Share"
   }
  ],
  "grid_page_length": 50,

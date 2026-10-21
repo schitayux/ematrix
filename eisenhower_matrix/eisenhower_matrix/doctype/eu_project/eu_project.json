@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "autoname": "field:project_name",
+ "creation": "2026-10-22 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "project_name",
+  "color",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "project_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Proyecto",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "#5e64ff",
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "in_list_view": 1,
+   "label": "Color"
+  },
+  {
+   "default": "Activo",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Estado",
+   "options": "Activo\nArchivado"
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-22 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Eisenhower Matrix",
+ "name": "EU Project",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {"create": 1, "delete": 1, "read": 1, "write": 1, "export": 1, "report": 1, "role": "System Manager"},
+  {"create": 1, "read": 1, "write": 1, "report": 1, "role": "Eisenhower User"},
+  {"create": 1, "delete": 1, "read": 1, "write": 1, "report": 1, "role": "Eisenhower Manager"}
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "project_name"
+}

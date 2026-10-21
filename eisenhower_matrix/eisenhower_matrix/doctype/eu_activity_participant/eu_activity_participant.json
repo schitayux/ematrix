@@ -33,7 +33,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Rol de invitación",
-   "options": "Colaborador\nExterno"
+   "options": "Colaborador\nExterno\nDelegado"
   },
   {
    "depends_on": "eval:doc.invite_role == 'Externo'",

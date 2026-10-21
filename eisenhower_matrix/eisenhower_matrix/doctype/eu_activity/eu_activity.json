@@ -16,16 +16,32 @@
   "section_seguimiento",
   "status",
   "task_type",
+  "project",
   "column_break_seguimiento",
+  "start_date",
   "due_date",
+  "is_rescheduled",
+  "reschedule_count",
   "start_time",
   "end_time",
   "sync_to_google",
   "responsible_user",
+  "section_registro_horas",
+  "logged_hours",
+  "column_break_horas",
+  "is_billable",
+  "section_recurrencia",
+  "is_recurring",
+  "recurrence_frequency",
+  "recurrence_end_date",
+  "recurrence_count",
+  "recurrence_group",
   "section_colaboracion",
   "is_shared",
   "board_order",
   "participants",
+  "checklist",
+  "follow_up_of",
   "google_calendar",
   "google_event_id"
  ],
@@ -108,6 +124,20 @@
    "label": "Fecha límite"
   },
   {
+   "default": "0",
+   "fieldname": "is_rescheduled",
+   "fieldtype": "Check",
+   "label": "Reprogramada",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "reschedule_count",
+   "fieldtype": "Int",
+   "label": "Cantidad de reprogramaciones",
+   "read_only": 1
+  },
+  {
    "fieldname": "start_time",
    "fieldtype": "Time",
    "label": "Hora de inicio"
@@ -132,6 +162,75 @@
    "label": "Responsable",
    "options": "User",
    "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "eval:doc.logged_hours || doc.is_billable",
+   "fieldname": "section_registro_horas",
+   "fieldtype": "Section Break",
+   "label": "Registro de horas"
+  },
+  {
+   "default": "0",
+   "description": "Tiempo dedicado a esta actividad, en horas (hasta 2 decimales).",
+   "fieldname": "logged_hours",
+   "fieldtype": "Float",
+   "label": "Horas registradas",
+   "non_negative": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_horas",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_billable",
+   "fieldtype": "Check",
+   "label": "Tiempo facturable"
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "eval:doc.is_recurring",
+   "fieldname": "section_recurrencia",
+   "fieldtype": "Section Break",
+   "label": "Recurrencia"
+  },
+  {
+   "default": "0",
+   "description": "Al crear, genera una actividad independiente por cada fecha de la serie (los participantes no se copian).",
+   "fieldname": "is_recurring",
+   "fieldtype": "Check",
+   "label": "Actividad recurrente"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring",
+   "fieldname": "recurrence_frequency",
+   "fieldtype": "Select",
+   "label": "Frecuencia",
+   "options": "Diaria\nSemanal\nQuincenal\nMensual\nTrimestral\nAnual"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring",
+   "fieldname": "recurrence_end_date",
+   "fieldtype": "Date",
+   "label": "Repetir hasta"
+  },
+  {
+   "depends_on": "eval:doc.is_recurring",
+   "description": "Alternativa a 'Repetir hasta'. Incluye la primera ocurrencia. Máximo 104.",
+   "fieldname": "recurrence_count",
+   "fieldtype": "Int",
+   "label": "Número de repeticiones"
+  },
+  {
+   "description": "Token compartido por todas las actividades de una misma serie recurrente.",
+   "fieldname": "recurrence_group",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Grupo de recurrencia",
+   "read_only": 1,
+   "search_index": 1
   },
   {
    "fieldname": "section_colaboracion",
@@ -159,6 +258,14 @@
    "options": "EU Activity Participant"
   },
   {
+   "description": "Actividad original de la cual esta es un seguimiento (Track).",
+   "fieldname": "follow_up_of",
+   "fieldtype": "Link",
+   "label": "Seguimiento de",
+   "options": "EU Activity",
+   "read_only": 1
+  },
+  {
    "fieldname": "google_calendar",
    "fieldtype": "Link",
    "hidden": 1,
@@ -172,12 +279,30 @@
    "hidden": 1,
    "label": "ID de evento en Google Calendar",
    "read_only": 1
+  },
+  {
+   "fieldname": "checklist",
+   "fieldtype": "Table",
+   "label": "Subtareas",
+   "options": "EU Activity Checklist"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Fecha de inicio"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Proyecto",
+   "options": "EU Project",
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-08-13 00:00:00.000000",
+ "modified": "2026-08-28 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "Eisenhower Matrix",
  "name": "EU Activity",
